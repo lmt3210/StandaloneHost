@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="SettingsWindowController">
+            <connections>
+                <outlet property="uiAudioChannelPopUpButton" destination="REN-l3-Qnd" id="frk-je-09K"/>
+                <outlet property="uiAudioDevicePopUpButton" destination="h4r-No-SVl" id="5do-eB-dAx"/>
+                <outlet property="uiAudioSampleRatePopUpButton" destination="gDm-ef-DhG" id="DcB-A1-l2m"/>
+                <outlet property="uiChannelInput" destination="Xig-ax-vJR" id="XCl-2Q-IIz"/>
+                <outlet property="uiHighKeyInput" destination="VFi-oh-k46" id="sP6-Pu-ObT"/>
+                <outlet property="uiLowKeyInput" destination="9Du-Nu-sfV" id="yqo-FP-M7O"/>
+                <outlet property="uiMIDIInputPopUpButton" destination="tMs-yW-E6h" id="O51-Tt-hM6"/>
+                <outlet property="uiMIDIOutputPopUpButton" destination="VkY-sk-8NZ" id="339-5U-zLE"/>
+                <outlet property="uiRecordCheckBox" destination="Vdx-st-79O" id="he9-LH-Hsi"/>
+                <outlet property="uiTempoInput" destination="JlS-gN-h0w" id="c8C-3X-j4c"/>
+                <outlet property="uiTransposeInput" destination="fTA-rd-6rA" id="tEP-Ei-rIB"/>
+                <outlet property="window" destination="6E8-s2-W7z" id="ygZ-gl-gJ9"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="MainWindow" animationBehavior="default" id="6E8-s2-W7z" userLabel="Window">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
+            <rect key="contentRect" x="503" y="845" width="351" height="246"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1415"/>
+            <view key="contentView" wantsLayer="YES" appearanceType="aqua" id="Nuw-oD-OJ9">
+                <rect key="frame" x="0.0" y="0.0" width="351" height="246"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="o5y-bZ-Yxh">
+                        <rect key="frame" x="36" y="212" width="66" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="MIDI Input:" id="fLm-qT-dwH">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="XcQ-LK-lUY">
+                        <rect key="frame" x="32" y="27" width="66" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="MIDI Output:" id="LcI-sl-5KM">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton autoresizesSubviews="NO" imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h4r-No-SVl" userLabel="Ui Audio Device Pop Up Button">
+                        <rect key="frame" x="105" y="126" width="229" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="mea-Bl-mQ8" id="xyO-so-3ej">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" title="OtherViews" id="R2k-oB-GBc">
+                                <items>
+                                    <menuItem title="Item1" state="on" id="mea-Bl-mQ8"/>
+                                    <menuItem title="Item2" id="Pjd-iA-aYZ"/>
+                                    <menuItem title="Item3" id="3Oz-FP-2Kg"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="iaAudioDevicePopUpButtonPressed:" target="-2" id="T5T-BP-dyD"/>
+                        </connections>
+                    </popUpButton>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="87" translatesAutoresizingMaskIntoConstraints="NO" id="DqM-J2-jBZ">
+                        <rect key="frame" x="11" y="124" width="91" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Audio Device:" id="DZ4-qd-fBT">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton autoresizesSubviews="NO" imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REN-l3-Qnd" userLabel="Ui Audio Channel Pop Up Button">
+                        <rect key="frame" x="105" y="100" width="229" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="SUt-wN-z0w" id="QWo-Ep-4LW">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" title="OtherViews" id="2k0-g8-P6n">
+                                <items>
+                                    <menuItem title="Item1" state="on" id="SUt-wN-z0w"/>
+                                    <menuItem title="Item2" id="ENH-gr-8XF"/>
+                                    <menuItem title="Item3" id="Scm-f4-nkm"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="iaAudioChannelPopUpButtonPressed:" target="-2" id="uwl-hg-rvB"/>
+                        </connections>
+                    </popUpButton>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="87" translatesAutoresizingMaskIntoConstraints="NO" id="m3q-RO-p9u">
+                        <rect key="frame" x="11" y="98" width="91" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Audio Channel:" id="zAG-BO-HSB">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton autoresizesSubviews="NO" imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gDm-ef-DhG" userLabel="Ui Synth Pop Up Button">
+                        <rect key="frame" x="105" y="74" width="229" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="c1p-Dn-Bga" id="T3S-AG-HRj">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" title="OtherViews" id="6Ln-TX-GhS">
+                                <items>
+                                    <menuItem title="Item1" state="on" id="c1p-Dn-Bga"/>
+                                    <menuItem title="Item2" id="jZ1-5d-nk8"/>
+                                    <menuItem title="Item3" id="Moe-fx-9Et"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="iaAudioSampleRatePopUpButtonPressed:" target="-2" id="eNz-1m-OzB"/>
+                        </connections>
+                    </popUpButton>
+                    <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" preferredMaxLayoutWidth="80" translatesAutoresizingMaskIntoConstraints="NO" id="ryg-cW-AK0" userLabel="Sample Rate:">
+                        <rect key="frame" x="18" y="81" width="84" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="right" title="Sample Rate:" id="nU6-Db-7K0" userLabel="Sample Rate:">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <popUpButton autoresizesSubviews="NO" imageHugsTitle="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tMs-yW-E6h" userLabel="Ui MIDI Input Pop Up Button">
+                        <rect key="frame" x="105" y="207" width="229" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="clipping" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="wMa-XE-Tzi" id="yoZ-Li-TUx">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" title="OtherViews" id="sAv-0q-j9Z">
+                                <items>
+                                    <menuItem title="Item1" state="on" id="wMa-XE-Tzi"/>
+                                    <menuItem title="Item2" id="fYr-gf-ayU"/>
+                                    <menuItem title="Item3" id="4bs-WA-zSI"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="iaMIDIInputPopUpButtonPressed:" target="-2" id="jxe-PY-B2V"/>
+                        </connections>
+                    </popUpButton>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VFi-oh-k46" userLabel="Ui Hgh Key Input">
+                        <rect key="frame" x="156" y="157" width="40" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" bezelStyle="round" id="m3X-gA-LHo" userLabel="High Key">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Cj6-DG-emw">
+                                <real key="minimum" value="1"/>
+                                <real key="maximum" value="127"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mHighKey" id="D62-7e-7St">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="fTA-rd-6rA" id="mGh-ds-A1W"/>
+                        </connections>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="64" translatesAutoresizingMaskIntoConstraints="NO" id="1Zi-1W-tf3" userLabel="Key Range">
+                        <rect key="frame" x="40" y="156" width="68" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Key Range:" id="cvb-wh-uCq" userLabel="Key Range">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Du-Nu-sfV" userLabel="Ui Low Key Input">
+                        <rect key="frame" x="108" y="156" width="40" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" bezelStyle="round" id="yd4-PZ-BAH" userLabel="Low Key">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="16v-0N-6jg">
+                                <real key="minimum" value="1"/>
+                                <real key="maximum" value="127"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mLowKey" id="2ix-44-Rsh">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="VFi-oh-k46" id="vlt-Cg-Ag2"/>
+                        </connections>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="62" translatesAutoresizingMaskIntoConstraints="NO" id="FQF-0L-96R">
+                        <rect key="frame" x="204" y="160" width="66" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Transpose:" id="Nu0-0c-TX6">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTA-rd-6rA" userLabel="Ui Transpose">
+                        <rect key="frame" x="272" y="157" width="40" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" bezelStyle="round" id="mzk-Aj-Cx9" userLabel="Transpose">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="SN7-XO-zQa">
+                                <real key="minimum" value="-24"/>
+                                <real key="maximum" value="24"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mTranspose" id="s5R-wf-7QT">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="JlS-gN-h0w" id="R0Z-Kc-EuZ"/>
+                        </connections>
+                    </textField>
+                    <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZYV-7F-wbK">
+                        <rect key="frame" x="318" y="156" width="15" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <stepperCell key="cell" controlSize="small" continuous="YES" alignment="left" minValue="-24" maxValue="24" id="rkO-Lq-SPp"/>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mTranspose" id="xmQ-Gd-kEs">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </stepper>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QkA-0G-YBo">
+                        <rect key="frame" x="248" y="183" width="22" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="Vdx-st-79O" userLabel="Ui Record Check Box">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" size="11" name="HelveticaNeue"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="iaRecordCheckBox:" target="-2" id="h1a-AK-6Ca"/>
+                        </connections>
+                    </button>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="46" translatesAutoresizingMaskIntoConstraints="NO" id="2O4-MH-S5B">
+                        <rect key="frame" x="194" y="186" width="50" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" lineBreakMode="clipping" title="Record:" id="f5U-EA-E6t">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xig-ax-vJR" userLabel="Ui Channel">
+                        <rect key="frame" x="108" y="183" width="40" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" bezelStyle="round" id="Lge-3t-ql6" userLabel="Channel">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="lgq-qL-G8z">
+                                <real key="minimum" value="0.0"/>
+                                <real key="maximum" value="16"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mMIDIChannel" id="ENa-WB-r7N">
+                                <dictionary key="options">
+                                    <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="9Du-Nu-sfV" id="jHc-uz-FeI"/>
+                        </connections>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="64" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-AJ-Kba" userLabel="Channel">
+                        <rect key="frame" x="51" y="183" width="51" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Channel:" id="xBJ-cO-AUd" userLabel="Key Range">
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qgq-R8-qHX">
+                        <rect key="frame" x="58" y="54" width="44" height="14"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Tempo:" id="mtH-bI-qV9">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="87q-lU-eAu">
+                                <real key="minimum" value="40"/>
+                                <real key="maximum" value="240"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlS-gN-h0w" userLabel="Tempo">
+                        <rect key="frame" x="108" y="51" width="57" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" alignment="center" bezelStyle="round" id="tDX-Tk-neo" userLabel="Tempo">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="lxa-6c-SQ0">
+                                <real key="minimum" value="40"/>
+                                <real key="maximum" value="240"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="smallSystem"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <allowedInputSourceLocales>
+                                <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                            </allowedInputSourceLocales>
+                        </textFieldCell>
+                        <connections>
+                            <binding destination="-2" name="value" keyPath="mTempo" id="IE0-ya-FLe">
+                                <dictionary key="options">
+                                    <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                </dictionary>
+                            </binding>
+                            <outlet property="nextKeyView" destination="Xig-ax-vJR" id="eJm-26-67G"/>
+                        </connections>
+                    </textField>
+                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VkY-sk-8NZ" userLabel="Ui MIDI Output Pop Up Buyyon">
+                        <rect key="frame" x="105" y="22" width="229" height="22"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
+                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="oF4-Me-iUY" id="2lm-Bm-HAn">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystem"/>
+                            <menu key="menu" id="8Y4-Eh-JZw">
+                                <items>
+                                    <menuItem title="Item 1" state="on" id="oF4-Me-iUY"/>
+                                    <menuItem title="Item 2" id="Bxo-ur-SQh"/>
+                                    <menuItem title="Item 3" id="al8-dh-QsD"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="iaMIDIOutputPopUpButtonPressed:" target="-2" id="mDV-6c-Omi"/>
+                        </connections>
+                    </popUpButton>
+                </subviews>
+            </view>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                    <color key="value" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="194.5" y="24"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="eIB-XN-7ii"/>
+    </objects>
+</document>

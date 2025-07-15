@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment version="101300" identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="AMg-um-Ll1" id="Rv8-m6-RC5"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <menu title="MainMenu" systemMenu="main" id="29" userLabel="MainMenu">
+            <items>
+                <menuItem title="StandaloneHost" id="56">
+                    <menu key="submenu" title="StandaloneHost" systemMenu="apple" id="57">
+                        <items>
+                            <menuItem title="About" id="58">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Preferences..." keyEquivalent="," id="129">
+                                <connections>
+                                    <action selector="showSettingsWindow:" target="AMg-um-Ll1" id="nif-Qj-Hom"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="143">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Hide" keyEquivalent="h" id="134">
+                                <connections>
+                                    <action selector="hide:" target="-2" id="152"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Hide Others" keyEquivalent="h" id="145">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="hideOtherApplications:" target="-2" id="146"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Show All" id="150">
+                                <connections>
+                                    <action selector="unhideAllApplications:" target="-2" id="153"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="149">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Quit" keyEquivalent="q" id="136">
+                                <connections>
+                                    <action selector="terminate:" target="-2" id="139"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Operations" id="EZn-EK-jwu">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Operations" id="JbY-sA-OjP">
+                        <items>
+                            <menuItem title="SMF Playback" keyEquivalent="s" id="RJp-Sk-yJy" userLabel="SMF Playback">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <connections>
+                                    <action selector="showSMFPlaybackWindow:" target="AMg-um-Ll1" id="EVR-SP-zIG"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Select Synth" hidden="YES" enabled="NO" id="YcM-wA-n1P" userLabel="Select Synth">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <menu key="submenu" title="Select Synth" id="Dad-lX-EXk"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem title="Help" id="B1y-S9-rms">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Help" systemMenu="help" id="kGz-KH-1YQ">
+                        <items>
+                            <menuItem title="StandaloneHost Help" keyEquivalent="?" id="Ok5-jv-1Q6" userLabel="StandaloneHost Help">
+                                <connections>
+                                    <action selector="showHelp:" target="-1" id="UwQ-Y3-duM"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="132" y="367"/>
+        </menu>
+        <customObject id="AMg-um-Ll1" userLabel="AppDelegate" customClass="AppDelegate">
+            <connections>
+                <outlet property="mSynthMenu" destination="YcM-wA-n1P" id="NTR-Jb-AvL"/>
+                <outlet property="mSynthSelectMenu" destination="Dad-lX-EXk" id="sS0-R7-soo"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+
+<html>
+<head>
+  <title>StandaloneHost Help</title> 
+  <meta name="AppleTitle" content="StandaloneHost Help">
+  <meta name="copyright"
+   content="Copyright &copy; 2024 Larry M. Taylor. All rights reserved.">
+  <meta name="AppleIcon" content="images/notes-64.jpg">
+  <meta name="description" content="StandaloneHost Help.">
+  <meta http-equiv="content-type" content="text/html; charset=x-mac-roman">
+  <link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<!-- Side navigation -->
+<div class="sidenav">
+  <br /><br />
+  <br /><br />
+  <a href="index.html">Welcome</a>
+  <br /><br />
+  <a href="usage.html">Usage</a>
+  <br /><br />
+  <a href="smf.html">SMF Playback</a>
+  <br /><br />
+  <a href="prefs.html">Preferences</a>
+  <br /><br />
+  <a href="support.html">Support</a>
+  <br /><br />
+  <a href="versions.html">Version History</a>
+  <br /><br />
+</div>
+
+<!-- Page content -->
+<div class="main">
+<div class="border">
+<table border="0" cellpadding="0" cellspacing="5" summary="">
+  <tbody><tr valign="middle">
+  <td width="60" align="center" valign="middle">
+  <p><img src="images/notes-32.jpg" alt=""></p></td>
+  <td class="contents" valign="middle">
+  <h1>StandaloneHost Help</h1></td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Preferences</h2>
+<p><img src="images/prefs.jpg" alt=""></p>
+<br />
+<b>MIDI Input:</b> Select the input MIDI port. Added and deleted MIDI ports are automatically detected by StandaloneHost. If a previously selected port is not connected next time StandaloneHost is used, it will be marked as Inactive until the port is detected. All incoming MIDI system messages, including system exclusive ("sysex"), song position pointer, song select, MIDI clock, sequencer start/continue/stop, active sensing, and system reset are ignored.
+<br /><br />
+<b>Channel:</b> Select the MIDI input channel (1 - 16). Set channel to 0 to respond to all channels.
+<br /><br />
+<b>Record:</b> Check this box to record the unmodified MIDI data from the input port. The data will be stored in a Type 1 Standard MIDI File with a time signature of 4/4 and with the tempo set below. A new file will be saved after 5 seconds of inactivity or when about 100,000 events have been stored. Each file is placed in your home folder in the Music/StandaloneHost folder. The file name format is "synth_name yyyy-mn-dd at hh-mm-ss.mid", where yyyy is the year, mn is the month, dd is the day, hh is the hour, mm is the minutes, and ss is the seconds. Uncheck this box to stop recording. Sysex (System Exclusive), MIDI Clock, and Active Sensing messages are not recorded.
+<br /><br />
+<b>Key Range:</b> Select the note number range for playing the soft synth.
+<br /><br />
+<b>Transpose:</b> Select a transposition amount for the notes that are played by the soft synth.
+<br /><br />
+<b>Audio Device:</b> Select the output audio device. Added and deleted audio devices are not currently detected by StandaloneHost, so it must be restarted to use an added device.
+<br /><br />
+<b>Audio Channel:</b> Select the output audio channel.
+<br /><br />
+<b>Sample Rate:</b> Select the audio sample rate (44100 or 48000).
+<br /><br />
+<b>Tempo:</b> Set the tempo in beats per minute (BPM) for soft synths that have features such as arpeggiators that rely on host tempo. This field is also used to set the tempo of the SMF files created when the Record box is checked.
+<br /><br />
+<b>MIDI Output:</b> Select the output MIDI port. Added and deleted MIDI ports are automatically detected by StandaloneHost. If a previously selected port is not connected next time StandaloneHost is used, it will be marked as Inactive until the port is detected. MIDI data will only be output on this port if the hosted synth outputs MIDI data. Many will not output anything. Some that do include the Full Bucket soft synths (FB-3100, etc.), which will echo the incoming MIDI data to the output if "Global MIDI Settings...MIDI Thru" in the synth menu is checked.
+</div>
+</body>
+</html>
