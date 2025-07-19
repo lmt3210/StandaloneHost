@@ -739,8 +739,6 @@
     mGraph = [mAUGraph createGraph];
     mOutputUnit = [mAUGraph getOutputUnit];
 
-    [mAUGraph createGraph];
-
     // Send graph handle to sequencer window
     NSNumber *graphHandle =
         [NSNumber numberWithUnsignedLong:(unsigned long)mGraph];
