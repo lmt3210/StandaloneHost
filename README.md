@@ -13,6 +13,10 @@ additional features.
 
 Releases can be downloaded [here](https://www.larrymtaylor.com/software.php).
 
+## Dependencies
+StandaloneHost requires Apple's CoreAudioSDK version 1.1. It can be
+downloaded [here](https://github.com/nerrons/CoreAudioSDK).
+
 ## Contributing
 
 Contributions that enhance StandaloneHost or fix bugs are very much 
