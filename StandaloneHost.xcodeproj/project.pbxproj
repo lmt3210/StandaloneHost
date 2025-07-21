@@ -12,25 +12,6 @@
 		460A201A2A11952C0057D511 /* SequencerWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 460A20172A11952C0057D511 /* SequencerWindowController.xib */; };
 		460F79051FC8452E0024E498 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 460F79041FC8452E0024E498 /* Images.xcassets */; };
 		462E70272906A9220039A36A /* help in Resources */ = {isa = PBXBuildFile; fileRef = 462E70262906A9220039A36A /* help */; };
-		46690C7F2E23E81100194C95 /* LTPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46690C7A2E23E81100194C95 /* LTPopup.xib */; };
-		46690C802E23E81100194C95 /* LTVersionCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C7D2E23E81100194C95 /* LTVersionCheck.h */; };
-		46690C812E23E81100194C95 /* LTAudioUnitData.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C6E2E23E81100194C95 /* LTAudioUnitData.h */; };
-		46690C822E23E81100194C95 /* LTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C722E23E81100194C95 /* LTLog.h */; };
-		46690C832E23E81100194C95 /* LTAUGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C702E23E81100194C95 /* LTAUGraph.h */; };
-		46690C842E23E81100194C95 /* LTMidi.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C732E23E81100194C95 /* LTMidi.h */; };
-		46690C852E23E81100194C95 /* LTMidiPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C762E23E81100194C95 /* LTMidiPlayer.h */; };
-		46690C862E23E81100194C95 /* LTMidiCallbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C742E23E81100194C95 /* LTMidiCallbacks.h */; };
-		46690C872E23E81100194C95 /* LTPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C782E23E81100194C95 /* LTPopup.h */; };
-		46690C882E23E81100194C95 /* LTSynthWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C7B2E23E81100194C95 /* LTSynthWindow.h */; };
-		46690C892E23E81100194C95 /* LTVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690C7E2E23E81100194C95 /* LTVersionCheck.m */; };
-		46690C8A2E23E81100194C95 /* LTSynthWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46690C7C2E23E81100194C95 /* LTSynthWindow.mm */; };
-		46690C8B2E23E81100194C95 /* LTAudioUnitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690C6F2E23E81100194C95 /* LTAudioUnitData.m */; };
-		46690C8C2E23E81100194C95 /* LTAUGraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46690C712E23E81100194C95 /* LTAUGraph.mm */; };
-		46690C8D2E23E81100194C95 /* LTMidiCallbacks.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46690C752E23E81100194C95 /* LTMidiCallbacks.mm */; };
-		46690C8E2E23E81100194C95 /* LTPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690C792E23E81100194C95 /* LTPopup.m */; };
-		46690C8F2E23E81100194C95 /* LTMidiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690C772E23E81100194C95 /* LTMidiPlayer.m */; };
-		46690C922E23E87600194C95 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 46690C912E23E87600194C95 /* NSFileManager+DirectoryLocations.m */; };
-		46690C932E23E87600194C95 /* NSFileManager+DirectoryLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 46690C902E23E87600194C95 /* NSFileManager+DirectoryLocations.h */; };
 		466BB6761FF029940031B48C /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 466BB6751FF029940031B48C /* AppDelegate.mm */; };
 		466BB6781FF029A00031B48C /* AppDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 466BB6771FF029A00031B48C /* AppDelegate.h */; };
 		467947E12D9B4BB3006A2540 /* CAMutex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 467947DE2D9B4BB3006A2540 /* CAMutex.cpp */; };
@@ -51,6 +32,25 @@
 		46B0144C238DB3D4008E1B66 /* SynthWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 46B0144A238DB3D4008E1B66 /* SynthWindowController.h */; };
 		46B0144D238DB3D4008E1B66 /* SynthWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46B0144B238DB3D4008E1B66 /* SynthWindowController.mm */; };
 		46B8459F206CF94C00B1786E /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 46B8459E206CF94C00B1786E /* Credits.html */; };
+		46BDE6F82E2EBE5D00911F07 /* LTPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46BDE6F72E2EBE5D00911F07 /* LTPopup.xib */; };
+		46BDE6F92E2EBE5D00911F07 /* LTMidiCallbacks.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE6F12E2EBE5D00911F07 /* LTMidiCallbacks.h */; };
+		46BDE6FA2E2EBE5D00911F07 /* LTMidi.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE6F02E2EBE5D00911F07 /* LTMidi.h */; };
+		46BDE6FB2E2EBE5D00911F07 /* LTLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE6EF2E2EBE5D00911F07 /* LTLog.h */; };
+		46BDE6FC2E2EBE5D00911F07 /* LTPopup.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE6F52E2EBE5D00911F07 /* LTPopup.h */; };
+		46BDE6FD2E2EBE5D00911F07 /* LTMidiPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE6F32E2EBE5D00911F07 /* LTMidiPlayer.h */; };
+		46BDE6FE2E2EBE5D00911F07 /* LTMidiPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE6F42E2EBE5D00911F07 /* LTMidiPlayer.m */; };
+		46BDE6FF2E2EBE5D00911F07 /* LTPopup.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE6F62E2EBE5D00911F07 /* LTPopup.m */; };
+		46BDE7002E2EBE5D00911F07 /* LTMidiCallbacks.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE6F22E2EBE5D00911F07 /* LTMidiCallbacks.mm */; };
+		46BDE7072E2EBE8400911F07 /* LTVersionCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE7042E2EBE8400911F07 /* LTVersionCheck.m */; };
+		46BDE7082E2EBE8400911F07 /* LTSynthWindow.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE7022E2EBE8400911F07 /* LTSynthWindow.mm */; };
+		46BDE7092E2EBE8400911F07 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE7062E2EBE8400911F07 /* NSFileManager+DirectoryLocations.m */; };
+		46BDE70A2E2EBE8400911F07 /* LTSynthWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE7012E2EBE8400911F07 /* LTSynthWindow.h */; };
+		46BDE70B2E2EBE8400911F07 /* LTVersionCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE7032E2EBE8400911F07 /* LTVersionCheck.h */; };
+		46BDE70C2E2EBE8400911F07 /* NSFileManager+DirectoryLocations.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE7052E2EBE8400911F07 /* NSFileManager+DirectoryLocations.h */; };
+		46BDE7112E2EBEAB00911F07 /* LTAudioUnitData.m in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE70E2E2EBEAB00911F07 /* LTAudioUnitData.m */; };
+		46BDE7122E2EBEAB00911F07 /* LTAUGraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46BDE7102E2EBEAB00911F07 /* LTAUGraph.mm */; };
+		46BDE7132E2EBEAB00911F07 /* LTAudioUnitData.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE70D2E2EBEAB00911F07 /* LTAudioUnitData.h */; };
+		46BDE7142E2EBEAB00911F07 /* LTAUGraph.h in Headers */ = {isa = PBXBuildFile; fileRef = 46BDE70F2E2EBEAB00911F07 /* LTAUGraph.h */; };
 		46E535201FEEF432000A75FC /* SettingsWindowController.h in Headers */ = {isa = PBXBuildFile; fileRef = 46E5351D1FEEF432000A75FC /* SettingsWindowController.h */; };
 		46E535211FEEF432000A75FC /* SettingsWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 46E5351E1FEEF432000A75FC /* SettingsWindowController.mm */; };
 		46E535221FEEF432000A75FC /* SettingsWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E5351F1FEEF432000A75FC /* SettingsWindowController.xib */; };
@@ -80,25 +80,6 @@
 		46675A5123AFE03A0077E2D2 /* synth-16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "synth-16.png"; sourceTree = "<group>"; };
 		46675A5423AFE03A0077E2D2 /* synth-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "synth-512.png"; sourceTree = "<group>"; };
 		46675A5523AFE03A0077E2D2 /* synth-64.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "synth-64.png"; sourceTree = "<group>"; };
-		46690C6E2E23E81100194C95 /* LTAudioUnitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTAudioUnitData.h; path = Source/LTAudioUnitData.h; sourceTree = "<group>"; };
-		46690C6F2E23E81100194C95 /* LTAudioUnitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTAudioUnitData.m; path = Source/LTAudioUnitData.m; sourceTree = "<group>"; };
-		46690C702E23E81100194C95 /* LTAUGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTAUGraph.h; path = Source/LTAUGraph.h; sourceTree = "<group>"; };
-		46690C712E23E81100194C95 /* LTAUGraph.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = LTAUGraph.mm; path = Source/LTAUGraph.mm; sourceTree = "<group>"; };
-		46690C722E23E81100194C95 /* LTLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTLog.h; path = Source/LTLog.h; sourceTree = "<group>"; };
-		46690C732E23E81100194C95 /* LTMidi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTMidi.h; path = Source/LTMidi.h; sourceTree = "<group>"; };
-		46690C742E23E81100194C95 /* LTMidiCallbacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTMidiCallbacks.h; path = Source/LTMidiCallbacks.h; sourceTree = "<group>"; };
-		46690C752E23E81100194C95 /* LTMidiCallbacks.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = LTMidiCallbacks.mm; path = Source/LTMidiCallbacks.mm; sourceTree = "<group>"; };
-		46690C762E23E81100194C95 /* LTMidiPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTMidiPlayer.h; path = Source/LTMidiPlayer.h; sourceTree = "<group>"; };
-		46690C772E23E81100194C95 /* LTMidiPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTMidiPlayer.m; path = Source/LTMidiPlayer.m; sourceTree = "<group>"; };
-		46690C782E23E81100194C95 /* LTPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTPopup.h; path = Source/LTPopup.h; sourceTree = "<group>"; };
-		46690C792E23E81100194C95 /* LTPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTPopup.m; path = Source/LTPopup.m; sourceTree = "<group>"; };
-		46690C7A2E23E81100194C95 /* LTPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LTPopup.xib; path = Source/LTPopup.xib; sourceTree = "<group>"; };
-		46690C7B2E23E81100194C95 /* LTSynthWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTSynthWindow.h; path = Source/LTSynthWindow.h; sourceTree = "<group>"; };
-		46690C7C2E23E81100194C95 /* LTSynthWindow.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = LTSynthWindow.mm; path = Source/LTSynthWindow.mm; sourceTree = "<group>"; };
-		46690C7D2E23E81100194C95 /* LTVersionCheck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LTVersionCheck.h; path = Source/LTVersionCheck.h; sourceTree = "<group>"; };
-		46690C7E2E23E81100194C95 /* LTVersionCheck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LTVersionCheck.m; path = Source/LTVersionCheck.m; sourceTree = "<group>"; };
-		46690C902E23E87600194C95 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Source/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
-		46690C912E23E87600194C95 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Source/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		466BB6751FF029940031B48C /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = Source/AppDelegate.mm; sourceTree = "<group>"; };
 		466BB6771FF029A00031B48C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Source/AppDelegate.h; sourceTree = "<group>"; };
 		467947D22D9B4BB3006A2540 /* CAComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CAComponent.h; sourceTree = "<group>"; };
@@ -119,6 +100,25 @@
 		46B0144A238DB3D4008E1B66 /* SynthWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthWindowController.h; path = Source/SynthWindowController.h; sourceTree = "<group>"; };
 		46B0144B238DB3D4008E1B66 /* SynthWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SynthWindowController.mm; path = Source/SynthWindowController.mm; sourceTree = "<group>"; };
 		46B8459E206CF94C00B1786E /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
+		46BDE6EF2E2EBE5D00911F07 /* LTLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTLog.h; sourceTree = "<group>"; };
+		46BDE6F02E2EBE5D00911F07 /* LTMidi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMidi.h; sourceTree = "<group>"; };
+		46BDE6F12E2EBE5D00911F07 /* LTMidiCallbacks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMidiCallbacks.h; sourceTree = "<group>"; };
+		46BDE6F22E2EBE5D00911F07 /* LTMidiCallbacks.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTMidiCallbacks.mm; sourceTree = "<group>"; };
+		46BDE6F32E2EBE5D00911F07 /* LTMidiPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTMidiPlayer.h; sourceTree = "<group>"; };
+		46BDE6F42E2EBE5D00911F07 /* LTMidiPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTMidiPlayer.m; sourceTree = "<group>"; };
+		46BDE6F52E2EBE5D00911F07 /* LTPopup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTPopup.h; sourceTree = "<group>"; };
+		46BDE6F62E2EBE5D00911F07 /* LTPopup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTPopup.m; sourceTree = "<group>"; };
+		46BDE6F72E2EBE5D00911F07 /* LTPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LTPopup.xib; sourceTree = "<group>"; };
+		46BDE7012E2EBE8400911F07 /* LTSynthWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTSynthWindow.h; sourceTree = "<group>"; };
+		46BDE7022E2EBE8400911F07 /* LTSynthWindow.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTSynthWindow.mm; sourceTree = "<group>"; };
+		46BDE7032E2EBE8400911F07 /* LTVersionCheck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTVersionCheck.h; sourceTree = "<group>"; };
+		46BDE7042E2EBE8400911F07 /* LTVersionCheck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTVersionCheck.m; sourceTree = "<group>"; };
+		46BDE7052E2EBE8400911F07 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		46BDE7062E2EBE8400911F07 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		46BDE70D2E2EBEAB00911F07 /* LTAudioUnitData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAudioUnitData.h; sourceTree = "<group>"; };
+		46BDE70E2E2EBEAB00911F07 /* LTAudioUnitData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LTAudioUnitData.m; sourceTree = "<group>"; };
+		46BDE70F2E2EBEAB00911F07 /* LTAUGraph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LTAUGraph.h; sourceTree = "<group>"; };
+		46BDE7102E2EBEAB00911F07 /* LTAUGraph.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = LTAUGraph.mm; sourceTree = "<group>"; };
 		46E5351D1FEEF432000A75FC /* SettingsWindowController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SettingsWindowController.h; path = Source/SettingsWindowController.h; sourceTree = "<group>"; };
 		46E5351E1FEEF432000A75FC /* SettingsWindowController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = SettingsWindowController.mm; path = Source/SettingsWindowController.mm; sourceTree = "<group>"; wrapsLines = 0; };
 		46E5351F1FEEF432000A75FC /* SettingsWindowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SettingsWindowController.xib; path = Source/SettingsWindowController.xib; sourceTree = "<group>"; };
@@ -161,6 +161,7 @@
 				46FBDCEB23D3855B0032C53D /* StandaloneHost.entitlements */,
 				F408D52607709DF60065702D /* StandaloneHost.plist */,
 				08FB77AFFE84173DC02AAC07 /* Source */,
+				46BDE6EE2E2EBDE600911F07 /* Common */,
 				3E9DB8F7076F4C14006BE739 /* PublicUtility */,
 				46FBDCD323D384290032C53D /* Frameworks */,
 				089C167CFE841241C02AAC07 /* Resources */,
@@ -195,25 +196,6 @@
 				460A20152A11952B0057D511 /* SequencerWindowController.h */,
 				460A20162A11952B0057D511 /* SequencerWindowController.mm */,
 				460A20172A11952C0057D511 /* SequencerWindowController.xib */,
-				46690C6E2E23E81100194C95 /* LTAudioUnitData.h */,
-				46690C6F2E23E81100194C95 /* LTAudioUnitData.m */,
-				46690C702E23E81100194C95 /* LTAUGraph.h */,
-				46690C712E23E81100194C95 /* LTAUGraph.mm */,
-				46690C722E23E81100194C95 /* LTLog.h */,
-				46690C732E23E81100194C95 /* LTMidi.h */,
-				46690C742E23E81100194C95 /* LTMidiCallbacks.h */,
-				46690C752E23E81100194C95 /* LTMidiCallbacks.mm */,
-				46690C762E23E81100194C95 /* LTMidiPlayer.h */,
-				46690C772E23E81100194C95 /* LTMidiPlayer.m */,
-				46690C782E23E81100194C95 /* LTPopup.h */,
-				46690C792E23E81100194C95 /* LTPopup.m */,
-				46690C7A2E23E81100194C95 /* LTPopup.xib */,
-				46690C7B2E23E81100194C95 /* LTSynthWindow.h */,
-				46690C7C2E23E81100194C95 /* LTSynthWindow.mm */,
-				46690C7D2E23E81100194C95 /* LTVersionCheck.h */,
-				46690C7E2E23E81100194C95 /* LTVersionCheck.m */,
-				46690C902E23E87600194C95 /* NSFileManager+DirectoryLocations.h */,
-				46690C912E23E87600194C95 /* NSFileManager+DirectoryLocations.m */,
 				46F8BEA1296100AF005D66F9 /* Synths.h */,
 				46EBC8F71FE8A2D7000CBE71 /* main.m */,
 			);
@@ -248,7 +230,7 @@
 				467947E02D9B4BB3006A2540 /* CAStreamBasicDescription.cpp */,
 			);
 			name = PublicUtility;
-			path = /Users/Larry/Workspace/AppleSDKs/CoreAudioSDK/PublicUtility;
+			path = "/Users/Larry/Workspace/AppleSDKs/CoreAudioSDK-v1.1/PublicUtility";
 			sourceTree = "<absolute>";
 		};
 		460F78F61FC841650024E498 /* Icon.appiconset */ = {
@@ -275,6 +257,33 @@
 			path = Generic;
 			sourceTree = "<group>";
 		};
+		46BDE6EE2E2EBDE600911F07 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				46BDE6EF2E2EBE5D00911F07 /* LTLog.h */,
+				46BDE6F02E2EBE5D00911F07 /* LTMidi.h */,
+				46BDE70D2E2EBEAB00911F07 /* LTAudioUnitData.h */,
+				46BDE70E2E2EBEAB00911F07 /* LTAudioUnitData.m */,
+				46BDE70F2E2EBEAB00911F07 /* LTAUGraph.h */,
+				46BDE7102E2EBEAB00911F07 /* LTAUGraph.mm */,
+				46BDE6F12E2EBE5D00911F07 /* LTMidiCallbacks.h */,
+				46BDE6F22E2EBE5D00911F07 /* LTMidiCallbacks.mm */,
+				46BDE6F32E2EBE5D00911F07 /* LTMidiPlayer.h */,
+				46BDE6F42E2EBE5D00911F07 /* LTMidiPlayer.m */,
+				46BDE6F52E2EBE5D00911F07 /* LTPopup.h */,
+				46BDE6F62E2EBE5D00911F07 /* LTPopup.m */,
+				46BDE6F72E2EBE5D00911F07 /* LTPopup.xib */,
+				46BDE7012E2EBE8400911F07 /* LTSynthWindow.h */,
+				46BDE7022E2EBE8400911F07 /* LTSynthWindow.mm */,
+				46BDE7032E2EBE8400911F07 /* LTVersionCheck.h */,
+				46BDE7042E2EBE8400911F07 /* LTVersionCheck.m */,
+				46BDE7052E2EBE8400911F07 /* NSFileManager+DirectoryLocations.h */,
+				46BDE7062E2EBE8400911F07 /* NSFileManager+DirectoryLocations.m */,
+			);
+			name = Common;
+			path = ../LTCommon;
+			sourceTree = "<group>";
+		};
 		46FBDCD323D384290032C53D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,15 +305,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46690C802E23E81100194C95 /* LTVersionCheck.h in Headers */,
-				46690C812E23E81100194C95 /* LTAudioUnitData.h in Headers */,
-				46690C822E23E81100194C95 /* LTLog.h in Headers */,
-				46690C832E23E81100194C95 /* LTAUGraph.h in Headers */,
-				46690C842E23E81100194C95 /* LTMidi.h in Headers */,
-				46690C852E23E81100194C95 /* LTMidiPlayer.h in Headers */,
-				46690C862E23E81100194C95 /* LTMidiCallbacks.h in Headers */,
-				46690C872E23E81100194C95 /* LTPopup.h in Headers */,
-				46690C882E23E81100194C95 /* LTSynthWindow.h in Headers */,
 				46E535201FEEF432000A75FC /* SettingsWindowController.h in Headers */,
 				460A20182A11952C0057D511 /* SequencerWindowController.h in Headers */,
 				46B0144C238DB3D4008E1B66 /* SynthWindowController.h in Headers */,
@@ -313,9 +313,18 @@
 				467947E82D9B4BB3006A2540 /* CAHostTimeBase.h in Headers */,
 				467947E92D9B4BB3006A2540 /* CAComponent.h in Headers */,
 				467947EA2D9B4BB3006A2540 /* CAException.h in Headers */,
+				46BDE6F92E2EBE5D00911F07 /* LTMidiCallbacks.h in Headers */,
+				46BDE70A2E2EBE8400911F07 /* LTSynthWindow.h in Headers */,
+				46BDE70B2E2EBE8400911F07 /* LTVersionCheck.h in Headers */,
+				46BDE70C2E2EBE8400911F07 /* NSFileManager+DirectoryLocations.h in Headers */,
+				46BDE6FA2E2EBE5D00911F07 /* LTMidi.h in Headers */,
+				46BDE6FB2E2EBE5D00911F07 /* LTLog.h in Headers */,
+				46BDE6FC2E2EBE5D00911F07 /* LTPopup.h in Headers */,
+				46BDE6FD2E2EBE5D00911F07 /* LTMidiPlayer.h in Headers */,
 				467947EB2D9B4BB3006A2540 /* CAGuard.h in Headers */,
 				467947EC2D9B4BB3006A2540 /* CAStreamBasicDescription.h in Headers */,
-				46690C932E23E87600194C95 /* NSFileManager+DirectoryLocations.h in Headers */,
+				46BDE7132E2EBEAB00911F07 /* LTAudioUnitData.h in Headers */,
+				46BDE7142E2EBEAB00911F07 /* LTAUGraph.h in Headers */,
 				467947ED2D9B4BB3006A2540 /* CAMutex.h in Headers */,
 				467947EE2D9B4BB3006A2540 /* CAComponentDescription.h in Headers */,
 				467947EF2D9B4BB3006A2540 /* CADebugMacros.h in Headers */,
@@ -375,7 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46690C7F2E23E81100194C95 /* LTPopup.xib in Resources */,
+				46BDE6F82E2EBE5D00911F07 /* LTPopup.xib in Resources */,
 				462E70272906A9220039A36A /* help in Resources */,
 				460F79051FC8452E0024E498 /* Images.xcassets in Resources */,
 				46B8459F206CF94C00B1786E /* Credits.html in Resources */,
@@ -393,14 +402,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				460A20192A11952C0057D511 /* SequencerWindowController.mm in Sources */,
-				46690C922E23E87600194C95 /* NSFileManager+DirectoryLocations.m in Sources */,
-				46690C892E23E81100194C95 /* LTVersionCheck.m in Sources */,
-				46690C8A2E23E81100194C95 /* LTSynthWindow.mm in Sources */,
-				46690C8B2E23E81100194C95 /* LTAudioUnitData.m in Sources */,
-				46690C8C2E23E81100194C95 /* LTAUGraph.mm in Sources */,
-				46690C8D2E23E81100194C95 /* LTMidiCallbacks.mm in Sources */,
-				46690C8E2E23E81100194C95 /* LTPopup.m in Sources */,
-				46690C8F2E23E81100194C95 /* LTMidiPlayer.m in Sources */,
+				46BDE7072E2EBE8400911F07 /* LTVersionCheck.m in Sources */,
+				46BDE7082E2EBE8400911F07 /* LTSynthWindow.mm in Sources */,
+				46BDE7092E2EBE8400911F07 /* NSFileManager+DirectoryLocations.m in Sources */,
+				46BDE7112E2EBEAB00911F07 /* LTAudioUnitData.m in Sources */,
+				46BDE7122E2EBEAB00911F07 /* LTAUGraph.mm in Sources */,
 				46B0144D238DB3D4008E1B66 /* SynthWindowController.mm in Sources */,
 				466BB6761FF029940031B48C /* AppDelegate.mm in Sources */,
 				46E535211FEEF432000A75FC /* SettingsWindowController.mm in Sources */,
@@ -412,6 +418,9 @@
 				467947E52D9B4BB3006A2540 /* CADebugMacros.cpp in Sources */,
 				467947E62D9B4BB3006A2540 /* CAGuard.cpp in Sources */,
 				467947E72D9B4BB3006A2540 /* CAComponentDescription.cpp in Sources */,
+				46BDE6FE2E2EBE5D00911F07 /* LTMidiPlayer.m in Sources */,
+				46BDE6FF2E2EBE5D00911F07 /* LTPopup.m in Sources */,
+				46BDE7002E2EBE5D00911F07 /* LTMidiCallbacks.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

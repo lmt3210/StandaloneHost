@@ -14,7 +14,10 @@ additional features.
 Releases can be downloaded [here](https://www.larrymtaylor.com/software.php).
 
 ## Dependencies
-StandaloneHost requires Apple's CoreAudioSDK version 1.1. It can be
+StandaloneHost requires LTCommon. It is available on GitHib 
+[here](https://github.com/lmt3210/LTCommon).
+
+StandaloneHost also requires Apple's CoreAudioSDK version 1.1. It can be
 downloaded [here](https://github.com/nerrons/CoreAudioSDK).
 
 ## Contributing
