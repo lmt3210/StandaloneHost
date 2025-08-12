@@ -428,7 +428,7 @@
                               record, @"Record", nil];
     
     [[NSNotificationCenter defaultCenter]
-      postNotificationName:@"RecordNotification" object:nil
+      postNotificationName:@"StandaloneHostRecordNotification" object:nil
       userInfo:settings];
 }
 
@@ -598,19 +598,13 @@
                               nil];
  
     [[NSNotificationCenter defaultCenter]
-        postNotificationName:@"SettingsNotification" object:nil
+        postNotificationName:@"StandaloneHostSettingsNotification" object:nil
         userInfo:settings];
 }
 
 - (void)cleanup
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:
-        (NSApplication *)inSender
-{
-    return NO;
 }
 
 - (void)receiveMIDINotification:(NSNotification *)notification

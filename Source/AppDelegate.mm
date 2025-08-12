@@ -117,29 +117,34 @@
     mSettingsWindow = [[SettingsWindowController alloc]
                        initWithWindowNibName:@"SettingsWindowController"];
     
-    // Create the synth window controller
-    mSynthWindow = [[SynthWindowController alloc] init];
-    
     // Initialize the settings
     [mSettingsWindow loadWindow];
     [mSettingsWindow initSettings:mAppName];
     
+    // Initialize variables
+    mSynthWindow = nil;
+    
     // Check to see if we have been renamed
     if ([mAppName isEqualToString:@"StandaloneHost"] == YES)
     {
-        // Not renamed, so let the user select a synth
+        // Not renamed, so let the user select
         [mSynthMenu setEnabled:YES];
         [mSynthMenu setHidden:NO];
-        
-        // Populate list
+        [mMFXMenu setEnabled:YES];
+        [mMFXMenu setHidden:NO];
+
+        // Populate lists
         [self populateSynthList];
+        [self populateMFXList];
     }
     else
     {
-        // No need to allow synth selection
+        // No need to allow selection
         [mSynthMenu setEnabled:NO];
         [mSynthMenu setHidden:YES];
-        
+        [mMFXMenu setEnabled:NO];
+        [mMFXMenu setHidden:YES];
+
         // Update the main menu
         NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:0] submenu];
         [menu setTitle:mAppName];
@@ -153,7 +158,7 @@
                      withAppVersion:appVersion
                      withLogHandle:mLog withLogFile:mLogFile];
 }
-                          
+
 - (IBAction)synthSelect:(id)sender
 {
     NSMenuItem *synthMenu = (NSMenuItem *)sender;
@@ -165,25 +170,27 @@
 {
     NSMutableString *text = [[NSMutableString alloc] init];
 
-    // Initalize the synth
-    synthStatus status = [mSynthWindow initSynth:mAppName];
-    
-    // Send the settings to the synth
+    // Close any previous selected synth
+    if (mSynthWindow != nil)
+    {
+        [mSynthWindow cleanup];
+        mSynthWindow = nil;
+    }
+
+    // Create the synth window controller
+    mSynthWindow = [[SynthWindowController alloc] init];
+
+    // Load the synth
+    synthStatus status = [mSynthWindow loadSynth:mAppName];
+
+    // Send the settings to the synth window controller
     [mSettingsWindow sendSettings];
-    
+
     // Display popups if needed
     if (status == SYNTH_STATUS_NOT_SUPPORTED)
     {
         [text setString:mAppName];
-        [text appendString:@" is not currently supported. "];
-        [text appendString:@" Loaded the Apple DLS Music Device instead."];
-        [mPopupWindow show];
-        [mPopupWindow setText:(NSString *)text];
-    }
-    else if (status == SYNTH_STATUS_NOT_AUMU)
-    {
-        [text setString:mAppName];
-        [text appendString:@" is not a soft synth. "];
+        [text appendString:@" is not supported. "];
         [text appendString:@" Loaded the Apple DLS Music Device instead."];
         [mPopupWindow show];
         [mPopupWindow setText:(NSString *)text];
@@ -201,6 +208,12 @@
 - (BOOL)applicationSupportsSecureRestorableState:(NSApplication *)app
 {
     return TRUE;
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:
+    (NSApplication *)inSender
+{
+    return NO;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)notify
@@ -229,7 +242,7 @@
 {
     // Get info on all synth AUs installed
     NSMutableArray *audioUnits =[[NSMutableArray alloc] init];
-    int AUCount = 0;
+    long AUCount = 0;
     AudioComponentDescription desc = { 0 };
     desc.componentType = kAudioUnitType_MusicDevice;
     AUCount = AudioComponentCount(&desc);
@@ -239,10 +252,24 @@
     {
         AudioComponent comp = AudioComponentFindNext(last, &desc);
         last = comp;
-        LTAudioUnitData *auData =
+        AudioComponentDescription audesc = { 0 };
+        AudioComponentGetDescription(comp, &audesc);
+        NSString *mfg = statusToString(audesc.componentManufacturer);
+
+        // Omit synths from known vendors with vendor-supplied standalone apps
+        if (([mfg isEqualToString:@"Artu"] == NO) &&
+            ([mfg isEqualToString:@"Chry"] == NO) &&
+            ([mfg isEqualToString:@"KORG"] == NO) &&
+            ([mfg isEqualToString:@"-NI-"] == NO))
+        {
+            LTAudioUnitData *auData =
             [[LTAudioUnitData alloc] initWithComponent:comp];
-        [audioUnits addObject:auData];
+            [audioUnits addObject:auData];
+        }
     }
+    
+    // Update count
+    AUCount = [audioUnits count];
     
     // Get sorted list of manufacturers
     NSMutableArray *manufacturers = [[NSMutableArray alloc] init];
@@ -315,6 +342,103 @@
         for (int j = 0; j < [sortedSynths count]; j++)
         {
             NSMenuItem *mi = [[NSMenuItem alloc] initWithTitle:sortedSynths[j]
+                              action:@selector(synthSelect:)
+                              keyEquivalent:@""];
+            [csmi addItem:mi];
+        }
+    }
+}
+
+- (void)populateMFXList
+{
+    // Get info on all MFX AUs installed
+    NSMutableArray *audioUnits =[[NSMutableArray alloc] init];
+    int AUCount = 0;
+    AudioComponentDescription desc = { 0 };
+    desc.componentType = kAudioUnitType_MIDIProcessor;
+    AUCount = AudioComponentCount(&desc);
+    AudioComponent last = NULL;
+    
+    for (int i = 0; i < AUCount; ++i)
+    {
+        AudioComponent comp = AudioComponentFindNext(last, &desc);
+        last = comp;
+        LTAudioUnitData *auData =
+            [[LTAudioUnitData alloc] initWithComponent:comp];
+        [audioUnits addObject:auData];
+    }
+    
+    // Get sorted list of manufacturers
+    NSMutableArray *manufacturers = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < AUCount; i++)
+    {
+        LTAudioUnitData *auData =
+            (LTAudioUnitData *)[audioUnits objectAtIndex:i];
+        [manufacturers addObject:auData.company];
+    }
+    
+    NSArray *uniqueManufacturers =
+        [[NSSet setWithArray:manufacturers] allObjects];
+    NSArray *sortedManufacturers =
+        [uniqueManufacturers sortedArrayUsingSelector:@selector
+         (localizedCaseInsensitiveCompare:)];
+    
+    // Populate the "All" menu
+    NSMenu *csmi = [[NSMenu alloc] initWithTitle:@"All"];
+    NSMenuItem *cmi = [mMFXSelectMenu addItemWithTitle:@"All" action:nil
+                       keyEquivalent:@""];
+    [mMFXSelectMenu setSubmenu:csmi forItem:cmi];
+    NSMutableArray *mfxs = [[NSMutableArray alloc] init];
+    
+    for (int j = 0; j < AUCount; j++)
+    {
+        LTAudioUnitData *auData =
+            (LTAudioUnitData *)[audioUnits objectAtIndex:j];
+        [mfxs addObject:auData.name];
+    }
+
+    NSArray *sortedMFXs =
+        [mfxs sortedArrayUsingSelector:@selector
+         (localizedCaseInsensitiveCompare:)];
+    
+    for (int j = 0; j < [sortedMFXs count]; j++)
+    {
+        NSMenuItem *mi = [[NSMenuItem alloc] initWithTitle:sortedMFXs[j]
+                          action:@selector(synthSelect:) keyEquivalent:@""];
+        [csmi addItem:mi];
+    }
+    
+    // Populate company menus
+    for (int i = 0; i < [sortedManufacturers count]; i++)
+    {
+        NSString *company = sortedManufacturers[i];
+        NSMenu *csmi = [[NSMenu alloc] initWithTitle:company];
+        NSMenuItem *cmi = [mMFXSelectMenu addItemWithTitle:company
+                           action:nil keyEquivalent:@""];
+        [mMFXSelectMenu setSubmenu:csmi forItem:cmi];
+
+        // Get sorted list of synth names for this company
+        NSMutableArray *mfxs = [[NSMutableArray alloc] init];
+        
+        for (int j = 0; j < AUCount; j++)
+        {
+            LTAudioUnitData *auData =
+                (LTAudioUnitData *)[audioUnits objectAtIndex:j];
+        
+            if ([company isEqualToString:auData.company])
+            {
+                [mfxs addObject:auData.name];
+            }
+        }
+
+        NSArray *sortedMFXs =
+            [mfxs sortedArrayUsingSelector:@selector
+             (localizedCaseInsensitiveCompare:)];
+        
+        for (int j = 0; j < [sortedMFXs count]; j++)
+        {
+            NSMenuItem *mi = [[NSMenuItem alloc] initWithTitle:sortedMFXs[j]
                               action:@selector(synthSelect:)
                               keyEquivalent:@""];
             [csmi addItem:mi];

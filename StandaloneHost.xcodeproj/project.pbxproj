@@ -451,7 +451,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 30;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -460,7 +460,7 @@
 				INFOPLIST_FILE = StandaloneHost.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.larrymtaylor.StandaloneHost;
 				PRODUCT_NAME = StandaloneHost;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -488,7 +488,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 27;
+				CURRENT_PROJECT_VERSION = 30;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -496,7 +496,7 @@
 				INFOPLIST_FILE = StandaloneHost.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.music";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = 2.10.1;
+				MARKETING_VERSION = 2.11.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.larrymtaylor.StandaloneHost;
 				PRODUCT_NAME = StandaloneHost;
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23504" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="101300" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -69,8 +69,12 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Select Synth" hidden="YES" enabled="NO" id="YcM-wA-n1P" userLabel="Select Synth">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Select Synth" id="Dad-lX-EXk"/>
+                            </menuItem>
+                            <menuItem title="Select MIDI Effect" hidden="YES" enabled="NO" id="HKh-WR-l63" userLabel="Select MFX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Select MIDI Effect" id="AHd-lj-qAd"/>
                             </menuItem>
                         </items>
                     </menu>
@@ -92,6 +96,8 @@
         </menu>
         <customObject id="AMg-um-Ll1" userLabel="AppDelegate" customClass="AppDelegate">
             <connections>
+                <outlet property="mMFXMenu" destination="HKh-WR-l63" id="cDI-RP-6sh"/>
+                <outlet property="mMFXSelectMenu" destination="AHd-lj-qAd" id="bNA-3p-R9G"/>
                 <outlet property="mSynthMenu" destination="YcM-wA-n1P" id="NTR-Jb-AvL"/>
                 <outlet property="mSynthSelectMenu" destination="Dad-lX-EXk" id="sS0-R7-soo"/>
             </connections>

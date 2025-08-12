@@ -24,16 +24,6 @@
 
 #import "LTLog.h"
 
-typedef struct LTTimingInfoStruct
-{
-    Float64 tempo;             // current tempo in BPM
-    Float64 beat;              // current beat as PPQN
-    UInt32 offsetToNextBeat;   // delta sample offset to next beat
-    Float32 timeSigNumerator;  // time signature numerator
-    UInt32 timeSigDenominator; // time signature denominator
-    Float64 measureDownBeat;   // current measure down beat
-} LTTimingInfoStruct;
-
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
@@ -45,6 +35,8 @@ typedef struct LTTimingInfoStruct
 
     IBOutlet NSMenuItem *mSynthMenu;
     IBOutlet NSMenu *mSynthSelectMenu;
+    IBOutlet NSMenuItem *mMFXMenu;
+    IBOutlet NSMenu *mMFXSelectMenu;
     
     // For version check
     LTVersionCheck *mVersionCheck;

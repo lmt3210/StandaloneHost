@@ -196,12 +196,12 @@
     // Watch for graph handle notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
         selector:@selector(receiveGraphNotification:)
-        name:@"GraphNotification" object:nil];
+        name:@"LTGraphNotification" object:nil];
 }
 
 - (void)receiveGraphNotification:(NSNotification *)notification
 {
-    if ([[notification name] isEqualToString:@"GraphNotification"] == YES)
+    if ([[notification name] isEqualToString:@"LTGraphNotification"] == YES)
     {
         NSDictionary *userInfo = notification.userInfo;
         NSNumber *graphHandle = userInfo[@"mGraph"];

@@ -32,12 +32,11 @@
 #import "LTSynthWindow.h"
 #import "LTLog.h"
 
-#define kNoneDevice       999
+#define kNoneDevice  999
 
 typedef enum
 {
     SYNTH_STATUS_FOUND,
-    SYNTH_STATUS_NOT_AUMU,
     SYNTH_STATUS_NOT_SUPPORTED,
     SYNTH_STATUS_UNKNOWN
 } synthStatus;
@@ -52,11 +51,13 @@ typedef enum
     OSType mAUType;
     OSType mAUSubtype;
 
-    // For synth window
+    // For AU window
     LTSynthWindow *mSynthWindow;
 
     // For AU graph
     LTAUGraph *mAUGraph;
+    AudioUnit mSynthUnit;
+    AudioUnit mOutputUnit;
 
     // MIDI
     MIDIClientRef mMIDIClient;
@@ -83,12 +84,6 @@ typedef enum
     NSMutableDictionary *mAudioDeviceIDs;
     NSMutableDictionary *mAudioDeviceChannelCounts;
     
-    // AUGraph variables
-    AUGraph mGraph;
-    AUNode mSynthNode;
-    AudioUnit mSynthUnit;
-    AudioUnit mOutputUnit;
-    
     // Sample rate
     Float64 mSampleRate;
     
@@ -104,7 +99,7 @@ typedef enum
     NSString *mLogFile;
 }
 
-- (synthStatus)initSynth:(NSString *)appName;
+- (synthStatus)loadSynth:(NSString *)appName;
 - (void)cleanup;
 
 @end
