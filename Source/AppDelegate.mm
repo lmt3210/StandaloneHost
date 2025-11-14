@@ -31,7 +31,6 @@
 
 #import "SynthWindowController.h"
 #import "SettingsWindowController.h"
-#import "SequencerWindowController.h"
 #import "LTAudioUnitData.h"
 #import "LTPopup.h"
 #import "LTVersionCheck.h"
@@ -51,7 +50,7 @@
 #ifdef LT_TEST_APP_ON
     mAppName = @"StandaloneHost";
 #endif
-    
+
     // Set up logging
     mLog = os_log_create("com.larrymtaylor.StandaloneHost", "AppDelegate");
     NSString *path =
@@ -88,12 +87,6 @@
     
     // Setup popup window
     mPopupWindow = [[LTPopup alloc] initWithWindowNibName:@"LTPopup"];
-    
-    // Setup SMF playback window
-    mSequenceWindow = [[SequencerWindowController alloc]
-                       initWithWindowNibName:@"SequencerWindowController"];
-    [mSequenceWindow loadWindow];
-    [mSequenceWindow initSMFPlayback];
     
     // Create record storage directory if needed
     struct passwd *pw = getpwuid(getuid());
@@ -157,6 +150,11 @@
     mVersionCheck = [[LTVersionCheck alloc] initWithAppName:@"StandaloneHost"
                      withAppVersion:appVersion
                      withLogHandle:mLog withLogFile:mLogFile];
+}
+
+- (IBAction)showABoutBox:(id)sender
+{
+    [[AboutWindowController defaultController].window orderFront:self];
 }
 
 - (IBAction)synthSelect:(id)sender
@@ -225,11 +223,6 @@
 - (IBAction)showSettingsWindow:(id)sender
 {
     [mSettingsWindow showWindow:self];
-}
-
-- (IBAction)showSMFPlaybackWindow:(id)sender
-{
-    [mSequenceWindow show];
 }
 
 - (int)componentCountForAUType:(OSType)inAUType

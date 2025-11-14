@@ -7,14 +7,25 @@
 xcuserdata/
 
 # Build scripts and supporting files
-build.sh
-clean.sh
-package.sh
-app.plist
-distribution.plist
-requirements.plist
 synths.plist
 make_sahosts.sh
 synths.sh
-Scripts/
+
+# Synth icons
+StandaloneHost/Images.xcassets/
+Resources/Icon.appiconset/AX73/
+Resources/Icon.appiconset/D-50/
+Resources/Icon.appiconset/JD-800/
+Resources/Icon.appiconset/Minimonsta/
+Resources/Icon.appiconset/Nave/
+Resources/Icon.appiconset/Oddity2/
+Resources/Icon.appiconset/OP-X/
+Resources/Icon.appiconset/PPG Wave/
+Resources/Icon.appiconset/Rapture/
+Resources/Icon.appiconset/SOUND Canvas/
+Resources/Icon.appiconset/SYSTEM-100/
+Resources/Icon.appiconset/SYSTEM-8/
+Resources/Icon.appiconset/XV-5080/
+Resources/Icon.appiconset/z3ta+2/
+Resources/Icon.appiconset/ZENOLOGY/
 

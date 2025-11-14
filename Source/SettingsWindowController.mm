@@ -427,8 +427,8 @@
     NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
                               record, @"Record", nil];
     
-    [[NSNotificationCenter defaultCenter]
-      postNotificationName:@"StandaloneHostRecordNotification" object:nil
+    [[NSNotificationCenter defaultCenter] postNotificationName:
+      @"com.larrymtaylor.StandaloneHost.RecordNotification" object:nil
       userInfo:settings];
 }
 
@@ -597,9 +597,9 @@
                               mAudioDeviceChannelCounts, @"Channel Counts",
                               nil];
  
-    [[NSNotificationCenter defaultCenter]
-        postNotificationName:@"StandaloneHostSettingsNotification" object:nil
-        userInfo:settings];
+    [[NSNotificationCenter defaultCenter] postNotificationName:
+      @"com.larrymtaylor.StandaloneHost.SettingsNotification" object:nil
+      userInfo:settings];
 }
 
 - (void)cleanup
@@ -618,6 +618,9 @@
 
 - (void)awakeFromNib
 {
+    [self.window setBackgroundColor:[NSColor colorWithSRGBRed:(61.0 / 255.0)
+                                     green:(39.0 / 255.0) blue:(93.0 / 255.0)
+                                     alpha:1.0]];
 }
 
 - (void)initSettings:(NSString *)appName

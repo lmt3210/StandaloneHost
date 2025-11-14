@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="101300" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -20,7 +20,7 @@
                             <menuItem title="About" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
+                                    <action selector="showABoutBox:" target="AMg-um-Ll1" id="ibL-jB-Tdw"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Preferences..." keyEquivalent="," id="129">
@@ -62,12 +62,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Operations" id="JbY-sA-OjP">
                         <items>
-                            <menuItem title="SMF Playback" keyEquivalent="s" id="RJp-Sk-yJy" userLabel="SMF Playback">
-                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                <connections>
-                                    <action selector="showSMFPlaybackWindow:" target="AMg-um-Ll1" id="EVR-SP-zIG"/>
-                                </connections>
-                            </menuItem>
                             <menuItem title="Select Synth" hidden="YES" enabled="NO" id="YcM-wA-n1P" userLabel="Select Synth">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Select Synth" id="Dad-lX-EXk"/>

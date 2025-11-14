@@ -28,7 +28,7 @@
 
 #import "LTMidi.h"
 #import "LTMidiCallbacks.h"
-#import "LTAUGraph.h"
+#import "LTAUMgr.h"
 #import "LTSynthWindow.h"
 #import "LTLog.h"
 
@@ -54,8 +54,8 @@ typedef enum
     // For AU window
     LTSynthWindow *mSynthWindow;
 
-    // For AU graph
-    LTAUGraph *mAUGraph;
+    // For AU "graph"
+    LTAUMgr *mAUMgr;
     AudioUnit mSynthUnit;
     AudioUnit mOutputUnit;
 

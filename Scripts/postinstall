@@ -1,0 +1,30 @@
+#!/bin/bash 
+
+# $1  Full path to the installation package the Installer application 
+#     is processing. For example: /Volumes/Users/Vikrams/Desktop/TestPkg.pkg
+# $2  Full path to the installation destination. For example: /Applications
+# $3  Installation volume (or mount point) to receive the payload.
+#     For example: /Volumes/Tools
+# $4  The root directory for the system: /
+# $SCRIPT_NAME  Filename of the operation executable.
+# $PACKAGE_PATH  Full path to the installation package. Same as $1.
+# $INSTALLER_TEMP  Scratch directory used by Installer to place its 
+#                  temporary work files
+
+open -W /Applications/StandaloneHostUpdater.app
+
+find /Applications -type d -maxdepth 1 -name '*.app' | while read APP;
+do
+    PLIST="${APP}/Contents/Info.plist"
+
+    if [ -f "${PLIST}" ]; then
+        RESULT=$(cat "${PLIST}" | grep com.larrymtaylor.StandaloneHost)
+
+        if [ "${RESULT}" != "" ]; then
+            chown -R "${USER}" "${APP}"
+        fi
+    fi
+done
+
+exit 0
+

@@ -1,5 +1,5 @@
 body { font-family: Verdana, Tahoma, Arial, Sans-serif; font-size: 14px;
-       color: #ffffff; margin: 0; padding: 0; background: #5f92b2 }
+       color: #ffffff; margin: 0; padding: 0; background: #3d275d }
 
 h1, h2, h3, h4 { font-family: Verdana, Tahoma, Arial, Sans-serif;
                  font-weight: normal; }
@@ -10,7 +10,7 @@ h4 { font-size: 18px; line-height: 1.2; color: #ffffff}
 
 .border {
     margin-bottom: 30px;
-    border-bottom: 1px solid #E1E1E1;
+    border-bottom: 1px solid #e1e1e1;
     margin-right: 20px;
 }
 
@@ -26,7 +26,7 @@ a {
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #5f92b2;
+    background-color: #3d275d;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<installer-gui-script minSpecVersion="1">
+    <title>StandaloneHost Synths</title>
+    <volume-check>
+        <allowed-os-versions>
+            <os-version min="10.13"/>
+        </allowed-os-versions>
+    </volume-check>
+    <choices-outline>
+        <line choice="default"/>
+        <line choice="updater"/>
+    </choices-outline>
+    <choice id="default" visible="false">
+        <pkg-ref id="StandaloneHost.pkg"/>
+    </choice>
+    <pkg-ref id="StandaloneHost.pkg" version="SA_VERSION" onConclusion="none">sa_app.pkg</pkg-ref>
+    <choice id="updater" visible="false">
+        <pkg-ref id="StandaloneHostUpdater.pkg"/>
+    </choice>
+    <pkg-ref id="StandaloneHostUpdater.pkg" version="SAU_VERSION" onConclusion="none">sau_app.pkg</pkg-ref>
+</installer-gui-script>

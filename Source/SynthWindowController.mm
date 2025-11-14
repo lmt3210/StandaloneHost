@@ -41,7 +41,7 @@
 #import "CAStreamBasicDescription.h"
 
 #import "Synths.h"
-#import "LTAUGraph.h"
+#import "LTAUMgr.h"
 #import "SynthWindowController.h"
 #import "NSFileManager+DirectoryLocations.h"
 
@@ -60,7 +60,7 @@
         mLogFile = [[NSString alloc] initWithFormat:@"%@/logFile.txt", path];
 
         // Initialize variables
-        mAUGraph = nil;
+        mAUMgr = nil;
         mSynthUnit = nil;
         mOutputUnit = nil;
     }
@@ -254,7 +254,7 @@
                                        kAudioUnitScope_Global, 0,
                                        &midiOutputCallbackStruct,
                                        sizeof(midiOutputCallbackStruct));
-            
+
             if (err != noErr)
             {
                 LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
@@ -278,8 +278,11 @@
         CFRelease(midiOutputs);
     }
 
-    // Start the AUGraph
-    [mAUGraph startGraph];
+    // Init everything
+    [mAUMgr initAU];
+    [mAUMgr initOutput];
+    [mAUMgr connectUnits];
+    [mAUMgr startOutput];
   
     // Set up MIDI
     [self setupMIDI];
@@ -293,8 +296,8 @@
 
 - (void)setSynthSampleRate
 {
-    // Stop the AUGraph
-    [mAUGraph stopGraph];
+    [mAUMgr stopOutput];
+    [mAUMgr uninitAU];
     
     // Set AU sample rate
     OSStatus err = AudioUnitSetProperty(mSynthUnit,
@@ -304,13 +307,13 @@
     
     if (err != noErr)
     {
-        LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
-              @"Error setting AU sample rate, error = %i (%@)",
+        LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+              @"Status after setting AU sample rate = %i (%@)",
               err, statusToString(err));
     }
-   
-    // Re-start the AUGraph
-    [mAUGraph startGraph];
+    
+    [mAUMgr initAU];
+    [mAUMgr startOutput];
 }
 
 - (void)setSampleRate
@@ -460,14 +463,14 @@
             mAUSubtype = knownSynths[i].subtype;
             status = SYNTH_STATUS_FOUND;
             LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                  @"Found \"%@\" in known synth list, auName = %@",
+                  @"Found \"%@\" in known list, auName = %@",
                   appName, mDisplayName);
             break;
         }
     }
  
-    // See if we can match the name in the installed list from
-    // AudioComponent manager for soft synths
+    // See if we can exactly match the name in the installed list from
+    // AudioComponent manager
     CAComponentDescription desc =
         CAComponentDescription(kAudioUnitType_MusicDevice);
     int count = desc.Count();
@@ -476,7 +479,6 @@
     memset(AUList, 0, dataByteSize);
     CAComponent *last = NULL;
 
-    // First try exact or close match
     if (status == SYNTH_STATUS_UNKNOWN)
     {
         // Build AUList
@@ -499,22 +501,7 @@
                 mAUSubtype = desc.componentSubType;
 
                 LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                      @"Found \"%@\" in installed synths (exact match), "
-                       "auName is \"%@\"", appName, auName);
-                status = SYNTH_STATUS_FOUND;
-                break;
-            }
-            else if (([auName containsString:appName] == YES) ||
-                ([appName containsString:auName] == YES))
-            {
-                AudioComponentDescription desc = AUList[i].Desc();
-                mDisplayName = [auName copy];
-                mAUType = desc.componentType;
-                mAUMfg = desc.componentManufacturer;
-                mAUSubtype = desc.componentSubType;
-
-                LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                      @"Found \"%@\" in installed synths (close match), "
+                      @"Found \"%@\" installed AUs (exact match), "
                        "auName is \"%@\"", appName, auName);
                 status = SYNTH_STATUS_FOUND;
                 break;
@@ -524,7 +511,7 @@
 
     free(AUList);
     
-    // See if we can match the name in the installed list from
+    // See if we can exactly match the name in the installed list from
     // AudioComponent manager for MIDI effects
     desc = CAComponentDescription(kAudioUnitType_MIDIProcessor);
     count = desc.Count();
@@ -533,7 +520,6 @@
     memset(AUList, 0, dataByteSize);
     last = NULL;
 
-    // Try exact or close match
     if (status == SYNTH_STATUS_UNKNOWN)
     {
         // Build AUList
@@ -556,22 +542,7 @@
                 mAUSubtype = desc.componentSubType;
 
                 LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                      @"Found \"%@\" in installed synths (exact match), "
-                       "auName is \"%@\"", appName, auName);
-                status = SYNTH_STATUS_FOUND;
-                break;
-            }
-            else if (([auName containsString:appName] == YES) ||
-                ([appName containsString:auName] == YES))
-            {
-                AudioComponentDescription desc = AUList[i].Desc();
-                mDisplayName = [auName copy];
-                mAUType = desc.componentType;
-                mAUMfg = desc.componentManufacturer;
-                mAUSubtype = desc.componentSubType;
-
-                LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                      @"Found \"%@\" in installed synths (close match), "
+                      @"Found \"%@\" in installed AUs (exact match), "
                        "auName is \"%@\"", appName, auName);
                 status = SYNTH_STATUS_FOUND;
                 break;
@@ -581,6 +552,90 @@
 
     free(AUList);
 
+    // See if we can closely match the name in the installed list from
+    // AudioComponent manager for soft synths
+    desc = CAComponentDescription(kAudioUnitType_MusicDevice);
+    count = desc.Count();
+    dataByteSize = count * sizeof(CAComponent);
+    AUList = static_cast<CAComponent *>(malloc(dataByteSize));
+    memset(AUList, 0, dataByteSize);
+    last = NULL;
+    
+    if (status == SYNTH_STATUS_UNKNOWN)
+    {
+        // Build AUList
+        for (int i = 0; i < count; ++i)
+        {
+            AUList[i] = CAComponent(desc, last);
+            last = &(AUList[i]);
+        }
+
+        for (int i = 0; i < count; ++i)
+        {
+            NSString *auName = (__bridge NSString *)AUList[i].GetAUName();
+
+            if (([auName containsString:appName] == YES) ||
+                ([appName containsString:auName] == YES))
+            {
+                AudioComponentDescription desc = AUList[i].Desc();
+                mDisplayName = [auName copy];
+                mAUType = desc.componentType;
+                mAUMfg = desc.componentManufacturer;
+                mAUSubtype = desc.componentSubType;
+
+                LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+                      @"Found \"%@\" in installed AUs (close match), "
+                       "auName is \"%@\"", appName, auName);
+                status = SYNTH_STATUS_FOUND;
+                break;
+            }
+        }
+    }
+
+    free(AUList);
+    
+    // See if we can closely match the name in the installed list from
+    // AudioComponent manager for MIDI effects
+    desc = CAComponentDescription(kAudioUnitType_MIDIProcessor);
+    count = desc.Count();
+    dataByteSize = count * sizeof(CAComponent);
+    AUList = static_cast<CAComponent *>(malloc(dataByteSize));
+    memset(AUList, 0, dataByteSize);
+    last = NULL;
+
+    if (status == SYNTH_STATUS_UNKNOWN)
+    {
+        // Build AUList
+        for (int i = 0; i < count; ++i)
+        {
+            AUList[i] = CAComponent(desc, last);
+            last = &(AUList[i]);
+        }
+
+        for (int i = 0; i < count; ++i)
+        {
+            NSString *auName = (__bridge NSString *)AUList[i].GetAUName();
+
+            if (([auName containsString:appName] == YES) ||
+                ([appName containsString:auName] == YES))
+            {
+                AudioComponentDescription desc = AUList[i].Desc();
+                mDisplayName = [auName copy];
+                mAUType = desc.componentType;
+                mAUMfg = desc.componentManufacturer;
+                mAUSubtype = desc.componentSubType;
+
+                LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+                      @"Found \"%@\" in installed AUs (close match), "
+                       "auName is \"%@\"", appName, auName);
+                status = SYNTH_STATUS_FOUND;
+                break;
+            }
+        }
+    }
+
+    free(AUList);
+    
     // Last, try to get AU info from component bundle Info.plist
     if (status == SYNTH_STATUS_UNKNOWN)
     {
@@ -707,13 +762,15 @@
     
     // Watch for settings notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(receiveSettingsNotification:)
-        name:@"StandaloneHostSettingsNotification" object:nil];
+      selector:@selector(receiveSettingsNotification:)
+      name:@"com.larrymtaylor.StandaloneHost.SettingsNotification"
+      object:nil];
     
     // Watch for record notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(receiveRecordNotification:)
-        name:@"StandaloneHostRecordNotification" object:nil];
+      selector:@selector(receiveRecordNotification:)
+      name:@"com.larrymtaylor.StandaloneHost.RecordNotification"
+      object:nil];
     
     // MIDI error monitor timer
     mMIDITimer = [NSTimer scheduledTimerWithTimeInterval:5
@@ -723,9 +780,9 @@
     // Initialize HAL
     [self setupAUHAL];
     
-    // Create graph
-    mAUGraph = [[LTAUGraph alloc] initWithLogHandle:mLog withLogFile:mLogFile];
-    mOutputUnit = [mAUGraph createGraph];
+    // Create AUMgr and output
+    mAUMgr = [[LTAUMgr alloc] initWithLogHandle:mLog withLogFile:mLogFile];
+    mOutputUnit = [mAUMgr createOutput];
 
     // Do this to get the flags and mask
     AudioComponentDescription audesc = { 0 };
@@ -735,8 +792,8 @@
     AudioComponent comp = AudioComponentFindNext(NULL, &audesc);
     AudioComponentGetDescription(comp, &audesc);
     
-    // Add AU to graph
-    mSynthUnit = [mAUGraph addSynth:audesc];
+    // Add AU
+    mSynthUnit = [mAUMgr createAU:audesc];
 
     // Set up the AU
     [self setAudioUnit];
@@ -746,8 +803,8 @@
 
 - (void)receiveSettingsNotification:(NSNotification *)notification
 {
-    if ([[notification name]
-         isEqualToString:@"StandaloneHostSettingsNotification"] == YES)
+    if ([[notification name] isEqualToString:
+         @"com.larrymtaylor.StandaloneHost.SettingsNotification"] == YES)
     {
         NSDictionary *userInfo = notification.userInfo;
         mMIDIInputIndex = userInfo[@"Midi Input Index"];
@@ -784,8 +841,8 @@
 {
     NSString *record;
     
-    if ([[notification name]
-         isEqualToString:@"StandaloneHostRecordNotification"] == YES)
+    if ([[notification name] isEqualToString:
+         @"com.larrymtaylor.StandaloneHost.RecordNotification"] == YES)
     {
         NSDictionary *userInfo = notification.userInfo;
         record = userInfo[@"Record"];
@@ -975,13 +1032,13 @@
     // Unload AU
     if (mSynthUnit != nil)
     {
+        [mAUMgr stopOutput];
         [mSynthWindow closeViewForAU];
-        [mAUGraph stopGraph];
-        [mAUGraph removeSynth];
+        [mAUMgr deleteAU];
+        [mAUMgr deleteOutput];
         mSynthUnit = nil;
+        mOutputUnit = nil;
     }
-
-    [mAUGraph destroyGraph];
 }
 
 - (void)MIDITimer:(NSTimer *)timer

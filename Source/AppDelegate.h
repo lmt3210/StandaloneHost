@@ -22,6 +22,7 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "AboutWindowController.h"
 #import "LTLog.h"
 
 
@@ -29,7 +30,6 @@
 {
     SynthWindowController *mSynthWindow;
     SettingsWindowController *mSettingsWindow;
-    SequencerWindowController *mSequenceWindow;
     LTPopup *mPopupWindow;
     NSString *mAppName;
 
@@ -48,7 +48,7 @@
 }
 
 - (IBAction)showSettingsWindow:(id)sender;
-- (IBAction)showSMFPlaybackWindow:(id)sender;
 - (IBAction)synthSelect:(id)sender;
+- (IBAction)showABoutBox:(id)sender;
 
 @end

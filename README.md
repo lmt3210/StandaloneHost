@@ -9,10 +9,6 @@ program, without starting up a DAW or other hosting app. It is essentially
 the Mac equivalent of the popular SAVIHost program for Windows with
 additional features.
 
-## Downloads
-
-Releases can be downloaded [here](https://www.larrymtaylor.com/software.php).
-
 ## Dependencies
 StandaloneHost requires LTCommon. It is available on GitHib 
 [here](https://github.com/lmt3210/LTCommon).
