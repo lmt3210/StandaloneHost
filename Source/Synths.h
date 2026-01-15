@@ -36,6 +36,7 @@ const struct synthDefinition knownSynths[] =
     { @"AX73", @"AX73", 'Mnic', 'ax73' },
     { @"Martinic AX73", @"AX73", 'Mnic', 'ax73' },
     { @"D-50", @"D-50", 'RoCl', 'Vds0' },
+    { @"ESP", @"Expanded Softsynth Plugin for MONTAGE M-MODX M", 'Ymau', 'eSMm' },
     // FB-3100 AudioComponents dictionary returns wrong manufacturer 
     // and subtype
     { @"FB3100", @"FB-3100", 'FuBu', 'FB31' },

@@ -337,6 +337,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		4643964D2F19A7E800412196 /* ESP */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = ESP; path = Resources/Icon.appiconset/ESP; sourceTree = "<group>"; };
 		46AF37362EC5F4EB001E3310 /* Generic */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Generic; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -379,6 +380,7 @@
 			children = (
 				46AF37272EC5F4B6001E3310 /* AX73 */,
 				46AF38042EC5F51F001E3310 /* D-50 */,
+				4643964D2F19A7E800412196 /* ESP */,
 				46AF37412EC5F51E001E3310 /* JD-800 */,
 				46AF37A42EC5F51E001E3310 /* Minimonsta */,
 				46AF37C22EC5F51E001E3310 /* Nave */,
@@ -772,6 +774,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				4643964D2F19A7E800412196 /* ESP */,
 			);
 			name = StandaloneHost;
 			productInstallPath = "$(USER_APPS_DIR)";
