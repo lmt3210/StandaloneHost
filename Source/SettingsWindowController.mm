@@ -1,7 +1,7 @@
 //
 // SettingsWindowController.mm
 //
-// Copyright (c) 2020-2025 Larry M. Taylor
+// Copyright (c) 2020-2026 Larry M. Taylor
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -130,7 +130,6 @@
         
         if (error == noErr)
         {
-            
             for (int i = 0; i < deviceCount; i++)
             {
                 propSize = sizeof(CFStringRef);
@@ -609,7 +608,8 @@
 
 - (void)receiveMIDINotification:(NSNotification *)notification
 {
-    if ([[notification name] isEqualToString:@"LTMIDINotification"] == YES)
+    if ([[notification name] isEqualToString:
+         @"com.larrymtaylor.StandaloneHost.MIDINotification"] == YES)
     {
         [self synchronizeForNewMIDIInputs];
         [self synchronizeForNewMIDIOutputs];
@@ -642,8 +642,8 @@
     // Initialize user settings
     mMIDIInputName = (NSMutableString *)@"None";
     mMIDIOutputName = (NSMutableString *)@"None";
-    mAudioDeviceName = (NSMutableString *)@"Built-in Output";
-    mAudioChannelName = (NSMutableString *)@"Ch. 1 / Ch. 2";
+    mAudioDeviceName = (NSMutableString *)@"None";
+    mAudioChannelName = (NSMutableString *)@"N/A";
     mChannelIndex = [NSNumber numberWithLong:0];
     mAudioSampleRateName = (NSMutableString *)@"48000";
     
@@ -671,13 +671,13 @@
     
     // Watch for window close
     [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification
-        object:[self window]];
+      selector:@selector(windowWillClose:) name:NSWindowWillCloseNotification
+      object:[self window]];
     
     // Watch for MIDI notifications
     [[NSNotificationCenter defaultCenter] addObserver:self
-        selector:@selector(receiveMIDINotification:)
-        name:@"LTMIDINotification" object:nil];
+      selector:@selector(receiveMIDINotification:)
+      name:@"com.larrymtaylor.StandaloneHost.MIDINotification" object:nil];
 }
 
 - (void)windowWillClose:(NSNotification *)aNotification

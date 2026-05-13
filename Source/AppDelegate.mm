@@ -1,7 +1,7 @@
 //
 // AppDelegate.mm
 // 
-// Copyright (c) 2020-2025 Larry M. Taylor
+// Copyright (c) 2020-2026 Larry M. Taylor
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -73,8 +73,7 @@
     
     // Log some basic information
     NSDictionary *appInfo = [appBundle infoDictionary];
-    NSString *appVersion =
-        [appInfo objectForKey:@"CFBundleShortVersionString"];
+    mAppVersion = [appInfo objectForKey:@"CFBundleShortVersionString"];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/dd/yyyy h:mm a"];
     NSString *day = [dateFormatter stringFromDate:[NSDate date]];
@@ -83,7 +82,7 @@
     NSString *info = [NSString stringWithUTF8String:osinfo.version];
     LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
           @"\nStandaloneHost v%@ running with name \"%@\" on macOS "
-          "%@ (%@)\n%@", appVersion, mAppName, systemVersion, day, info);
+          "%@ (%@)\n%@", mAppVersion, mAppName, systemVersion, day, info);
     
     // Setup popup window
     mPopupWindow = [[LTPopup alloc] initWithWindowNibName:@"LTPopup"];
@@ -94,13 +93,11 @@
     NSMutableString *directory =
         [[NSMutableString alloc] initWithString:realHomeDir];
     [directory appendString:@"/Music/StandaloneHost/"];
-    
     NSFileManager *fileManager= [NSFileManager defaultManager];
     NSError *error = nil;
     
     if ([fileManager createDirectoryAtPath:directory
-               withIntermediateDirectories:YES attributes:nil
-                                     error:&error] == NO)
+         withIntermediateDirectories:YES attributes:nil error:&error] == NO)
     {
         LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
               @"Failed to create directory %@, error = %@", directory, error);
@@ -116,11 +113,14 @@
     
     // Initialize variables
     mSynthWindow = nil;
-    
+    mVersionCheck = nil;
+
     // Check to see if we have been renamed
     if ([mAppName isEqualToString:@"StandaloneHost"] == YES)
     {
         // Not renamed, so let the user select
+        [mOperationsMenu setEnabled:YES];
+        [mOperationsMenu setHidden:NO];
         [mSynthMenu setEnabled:YES];
         [mSynthMenu setHidden:NO];
         [mMFXMenu setEnabled:YES];
@@ -133,11 +133,13 @@
     else
     {
         // No need to allow selection
+        [mOperationsMenu setEnabled:NO];
+        [mOperationsMenu setHidden:YES];
         [mSynthMenu setEnabled:NO];
         [mSynthMenu setHidden:YES];
         [mMFXMenu setEnabled:NO];
         [mMFXMenu setHidden:YES];
-
+        
         // Update the main menu
         NSMenu *menu = [[[NSApp mainMenu] itemAtIndex:0] submenu];
         [menu setTitle:mAppName];
@@ -146,10 +148,26 @@
         [self launchSynth];
     }
     
-    // Start version check
-    mVersionCheck = [[LTVersionCheck alloc] initWithAppName:@"StandaloneHost"
-                     withAppVersion:appVersion
-                     withLogHandle:mLog withLogFile:mLogFile];
+#ifdef LT_AU_DEBUG
+    [mDebugMenu setEnabled:YES];
+    [mDebugMenu setHidden:NO];
+#endif
+}
+
+- (IBAction)showDebugInfo:(id)sender
+{
+    [mSynthWindow showDebugInfo];
+}
+
+- (IBAction)checkForUpdates:(id)sender
+{
+    if (mVersionCheck == nil)
+    {
+        mVersionCheck = [[LTVersionCheck alloc] init];
+    }
+
+    [mVersionCheck checkVersionForAppName:@"StandaloneHost"
+     withAppVersion:mAppVersion withLogHandle:mLog withLogFile:mLogFile];
 }
 
 - (IBAction)showABoutBox:(id)sender
@@ -256,11 +274,15 @@
             ([mfg isEqualToString:@"-NI-"] == NO))
         {
             LTAudioUnitData *auData =
-            [[LTAudioUnitData alloc] initWithComponent:comp];
-            [audioUnits addObject:auData];
+                [[LTAudioUnitData alloc] initWithComponent:comp];
+            
+            if ([auData.auVersion isEqualToString:@"V2"] == YES)
+            {
+                [audioUnits addObject:auData];
+            }
         }
     }
-    
+
     // Update count
     AUCount = [audioUnits count];
     
@@ -358,9 +380,13 @@
         last = comp;
         LTAudioUnitData *auData =
             [[LTAudioUnitData alloc] initWithComponent:comp];
-        [audioUnits addObject:auData];
+        
+        if ([auData.auVersion isEqualToString:@"V2"] == YES)
+        {
+            [audioUnits addObject:auData];
+        }
     }
-    
+
     // Get sorted list of manufacturers
     NSMutableArray *manufacturers = [[NSMutableArray alloc] init];
     

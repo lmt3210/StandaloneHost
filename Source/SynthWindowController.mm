@@ -1,7 +1,7 @@
 //
 // SynthWindowController.mm
 //
-// Copyright (c) 2020-2025 Larry M. Taylor
+// Copyright (c) 2020-2026 Larry M. Taylor
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -41,7 +41,7 @@
 #import "CAStreamBasicDescription.h"
 
 #import "Synths.h"
-#import "LTAUMgr.h"
+#import "LTAUGraph.h"
 #import "SynthWindowController.h"
 #import "NSFileManager+DirectoryLocations.h"
 
@@ -60,7 +60,7 @@
         mLogFile = [[NSString alloc] initWithFormat:@"%@/logFile.txt", path];
 
         // Initialize variables
-        mAUMgr = nil;
+        mAUGraph = nil;
         mSynthUnit = nil;
         mOutputUnit = nil;
     }
@@ -73,7 +73,7 @@
     OSStatus err = statusErr;
     
     err = MIDIClientCreate(CFSTR("StandaloneHost"), midiNotifyProc,
-                                 &mMIDIControl, &mMIDIClient);
+                           &mMIDIControl, &mMIDIClient);
     
     if (err != noErr)
     {
@@ -204,7 +204,7 @@
     }
 
     // Set frames per slice
-    UInt32 frames = 2048;
+    UInt32 frames = 512;
     UInt32 fSize = sizeof(frames);
     err = AudioUnitSetProperty(mSynthUnit,
                                kAudioUnitProperty_MaximumFramesPerSlice,
@@ -213,10 +213,10 @@
     if (err != noErr)
     {
         LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
-              @"Error setting frames per slice, error = %i (%@)",
+              @"Error setting synth frames per slice, error = %i (%@)",
               err, statusToString(err));
     }
-    
+ 
     // Set the render callback
     err = AudioUnitAddRenderNotify(mSynthUnit, renderNotifyProc,
                                    &mMIDIControl);
@@ -263,8 +263,7 @@
             }
             
             LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
-                  @"Synth has %i MIDI output(s)",
-                  numMidiOutputs);
+                  @"Synth has %i MIDI output(s)", numMidiOutputs);
             
             for (int i = 0; i < numMidiOutputs; i++)
             {
@@ -278,16 +277,13 @@
         CFRelease(midiOutputs);
     }
 
-    // Init everything
-    [mAUMgr initAU];
-    [mAUMgr initOutput];
-    [mAUMgr connectUnits];
-    [mAUMgr startOutput];
-  
     // Set up MIDI
     [self setupMIDI];
     [self setMIDIInput];
     [self setMIDIOutput];
+
+    // Start the AUGraph
+    [mAUGraph startGraph];
 
     // Show the GUI
     [mSynthWindow showViewForAU:mSynthUnit withName:mDisplayName];
@@ -296,8 +292,8 @@
 
 - (void)setSynthSampleRate
 {
-    [mAUMgr stopOutput];
-    [mAUMgr uninitAU];
+    // Stop the AUGraph
+    [mAUGraph stopGraph];
     
     // Set AU sample rate
     OSStatus err = AudioUnitSetProperty(mSynthUnit,
@@ -307,13 +303,13 @@
     
     if (err != noErr)
     {
-        LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+        LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
               @"Status after setting AU sample rate = %i (%@)",
               err, statusToString(err));
     }
     
-    [mAUMgr initAU];
-    [mAUMgr startOutput];
+    // Re-start the AUGraph
+    [mAUGraph startGraph];
 }
 
 - (void)setSampleRate
@@ -323,6 +319,7 @@
 
     if (activeAudioDeviceID != 0)
     {
+        // Set output scope
         AudioObjectPropertyAddress pa;
         pa.mSelector = kAudioDevicePropertyNominalSampleRate;
         pa.mScope = kAudioObjectPropertyScopeGlobal;
@@ -331,11 +328,44 @@
                                                     &pa, 0, NULL,
                                                     sizeof(mSampleRate),
                                                     &mSampleRate);
+
+        if (error != noErr)
+        {
+            LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+                  @"Status after setting output sample rate = %i (%@)", error,
+                  statusToString(error));
+        }
+
+        // Now make sure the output device input scope matches
+        // the synth output
+        AudioStreamBasicDescription format = { 0 };
+        UInt32 absdSize = sizeof(format);
+    
+        error = AudioUnitGetProperty(mSynthUnit,
+                                     kAudioUnitProperty_StreamFormat,
+                                     kAudioUnitScope_Output, 0,
+                                     &format, &absdSize);
+
         if (error != noErr)
         {
             LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
-                  @"Set sample rate error = %i (%@)", error,
-                  statusToString(error));
+                  @"Failed AudioUnitGetProperty for "
+                   "kAudioUnitProperty_StreamFormat for synth output scope, "
+                   "error = %i (%@)", error, statusToString(error));
+        }
+    
+        error = AudioUnitSetProperty(mOutputUnit,
+                                     kAudioUnitProperty_StreamFormat,
+                                     kAudioUnitScope_Input, 0,
+                                     &format, absdSize);
+
+        if (error != noErr)
+        {
+            LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
+                  @"Failed AudioUnitSetProperty for "
+                   "kAudioUnitProperty_StreamFormat for "
+                   "output device input scope, error = %i (%@)",
+                  error, statusToString(error));
         }
     }
 }
@@ -430,7 +460,7 @@
     {
         LTLog(mLog, mLogFile, OS_LOG_TYPE_ERROR,
               @"Failed AudioComponentInstanceNew for AUHAL, error = %i (%@)",
-               err, statusToString(err));
+              err, statusToString(err));
     }
     
     // AUHAL needs to be initialized before anything is done to it
@@ -714,9 +744,28 @@
         (mAUType != kAudioUnitType_MIDIProcessor) &&
         (status == SYNTH_STATUS_FOUND))
     {
-        LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO, @"\"%@\" is not %@, is %@",
-              appName, statusToString(kAudioUnitType_MusicDevice),
-              statusToString(mAUType));
+        LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO,
+              @"\"%@\" is not a synth or MIDI FX, is type %@",
+              appName, statusToString(mAUType));
+        status = SYNTH_STATUS_NOT_SUPPORTED;
+    }
+    
+    // Do this to get the flags and mask (needed for V2 check and
+    // for the call to mAUGraph addSynth below
+    AudioComponentDescription audesc = { 0 };
+    audesc.componentType = mAUType;
+    audesc.componentManufacturer = mAUMfg;
+    audesc.componentSubType = mAUSubtype;
+    AudioComponent comp = AudioComponentFindNext(NULL, &audesc);
+    AudioComponentGetDescription(comp, &audesc);
+    
+    // Check that AU is V2
+    if (((audesc.componentFlags &
+          kAudioComponentFlag_IsV3AudioUnit)) &&
+        (status == SYNTH_STATUS_FOUND))
+    {
+        LTLog(mLog, mLogFile, OS_LOG_TYPE_INFO, @"\"%@\" is not AUV2",
+              appName);
         status = SYNTH_STATUS_NOT_SUPPORTED;
     }
 
@@ -742,6 +791,10 @@
     
     // Synth unit is unknown for now
     mMIDIControl.synthUnit = nil;
+    
+    // Flag MIDI only if needed
+    (mAUType == kAudioUnitType_MIDIProcessor) ? mMIDIControl.midiOnly = 1 :
+        mMIDIControl.midiOnly = 0;
 
     // MIDI output port is unknown for now
     mMIDIControl.outPort = NULL;
@@ -780,20 +833,12 @@
     // Initialize HAL
     [self setupAUHAL];
     
-    // Create AUMgr and output
-    mAUMgr = [[LTAUMgr alloc] initWithLogHandle:mLog withLogFile:mLogFile];
-    mOutputUnit = [mAUMgr createOutput];
+    // Create graph
+    mAUGraph = [[LTAUGraph alloc] initWithLogHandle:mLog withLogFile:mLogFile];
+    mOutputUnit = [mAUGraph createGraph];
 
-    // Do this to get the flags and mask
-    AudioComponentDescription audesc = { 0 };
-    audesc.componentType = mAUType;
-    audesc.componentManufacturer = mAUMfg;
-    audesc.componentSubType = mAUSubtype;
-    AudioComponent comp = AudioComponentFindNext(NULL, &audesc);
-    AudioComponentGetDescription(comp, &audesc);
-    
-    // Add AU
-    mSynthUnit = [mAUMgr createAU:audesc];
+    // Add AU to graph
+    mSynthUnit = [mAUGraph addSynth:audesc];
 
     // Set up the AU
     [self setAudioUnit];
@@ -832,8 +877,8 @@
         [self setMIDIOutput];
         [self setAudioDevice];
         [self setAudioChannel];
-        [self setSampleRate];
         [self setSynthSampleRate];
+        [self setSampleRate];
     }
 }
 
@@ -862,8 +907,8 @@
         mLastRecordCount = 0;
         
         mRecordTimer = [NSTimer scheduledTimerWithTimeInterval:5
-                       target:self selector:@selector(recordTimer:)
-                       userInfo:nil repeats:YES];
+                        target:self selector:@selector(recordTimer:)
+                        userInfo:nil repeats:YES];
     }
     else
     {
@@ -1032,13 +1077,13 @@
     // Unload AU
     if (mSynthUnit != nil)
     {
-        [mAUMgr stopOutput];
         [mSynthWindow closeViewForAU];
-        [mAUMgr deleteAU];
-        [mAUMgr deleteOutput];
+        [mAUGraph stopGraph];
+        [mAUGraph removeSynth];
         mSynthUnit = nil;
-        mOutputUnit = nil;
     }
+
+    [mAUGraph destroyGraph];
 }
 
 - (void)MIDITimer:(NSTimer *)timer
@@ -1060,6 +1105,15 @@
 
         mMIDIControl.err = noErr;
     }
+}
+
+- (void)showDebugInfo
+{
+    [mAUGraph graphInfo];
+    [mAUGraph showAUInfo:mSynthUnit forAUName:@"Synth"
+     hasInput:false hasOutput:true];
+    [mAUGraph showAUInfo:mOutputUnit forAUName:@"Output"
+     hasInput:true hasOutput:true];
 }
 
 @end

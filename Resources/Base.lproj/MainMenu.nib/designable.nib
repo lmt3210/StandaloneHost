@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24412" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment version="101300" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24412"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -23,12 +23,24 @@
                                     <action selector="showABoutBox:" target="AMg-um-Ll1" id="ibL-jB-Tdw"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Preferences..." keyEquivalent="," id="129">
+                            <menuItem isSeparatorItem="YES" id="143">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Settings..." keyEquivalent="," id="129">
                                 <connections>
                                     <action selector="showSettingsWindow:" target="AMg-um-Ll1" id="nif-Qj-Hom"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="143">
+                            <menuItem isSeparatorItem="YES" id="tqV-2w-NYD">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Check For Updates" id="ijP-ko-hmK" userLabel="Check For Updates">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="checkForUpdates:" target="AMg-um-Ll1" id="SGb-rX-yie"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="RdZ-qZ-eSF">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Hide" keyEquivalent="h" id="134">
@@ -70,6 +82,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Select MIDI Effect" id="AHd-lj-qAd"/>
                             </menuItem>
+                            <menuItem title="Show Debug Info" hidden="YES" enabled="NO" id="1ey-H2-7hL" userLabel="Show Debug Info">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="showDebugInfo:" target="AMg-um-Ll1" id="OMs-Nx-uaL"/>
+                                </connections>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -90,8 +108,10 @@
         </menu>
         <customObject id="AMg-um-Ll1" userLabel="AppDelegate" customClass="AppDelegate">
             <connections>
+                <outlet property="mDebugMenu" destination="1ey-H2-7hL" id="OC1-cd-QTj"/>
                 <outlet property="mMFXMenu" destination="HKh-WR-l63" id="cDI-RP-6sh"/>
                 <outlet property="mMFXSelectMenu" destination="AHd-lj-qAd" id="bNA-3p-R9G"/>
+                <outlet property="mOperationsMenu" destination="EZn-EK-jwu" id="lT5-Q5-VbZ"/>
                 <outlet property="mSynthMenu" destination="YcM-wA-n1P" id="NTR-Jb-AvL"/>
                 <outlet property="mSynthSelectMenu" destination="Dad-lX-EXk" id="sS0-R7-soo"/>
             </connections>

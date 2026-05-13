@@ -1,7 +1,7 @@
 //
 // SynthWindowController.h
 //
-// Copyright (c) 2020-2025 Larry M. Taylor
+// Copyright (c) 2020-2026 Larry M. Taylor
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -28,7 +28,7 @@
 
 #import "LTMidi.h"
 #import "LTMidiCallbacks.h"
-#import "LTAUMgr.h"
+#import "LTAUGraph.h"
 #import "LTSynthWindow.h"
 #import "LTLog.h"
 
@@ -54,8 +54,8 @@ typedef enum
     // For AU window
     LTSynthWindow *mSynthWindow;
 
-    // For AU "graph"
-    LTAUMgr *mAUMgr;
+    // For AU graph
+    LTAUGraph *mAUGraph;
     AudioUnit mSynthUnit;
     AudioUnit mOutputUnit;
 
@@ -101,5 +101,6 @@ typedef enum
 
 - (synthStatus)loadSynth:(NSString *)appName;
 - (void)cleanup;
+- (void)showDebugInfo;
 
 @end

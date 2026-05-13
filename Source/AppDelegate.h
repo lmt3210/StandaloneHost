@@ -1,7 +1,7 @@
 //
 // AppDelegate.h
 // 
-// Copyright (c) 2020-2025 Larry M. Taylor
+// Copyright (c) 2020-2026 Larry M. Taylor
 //
 // This software is provided 'as-is', without any express or implied
 // warranty. In no event will the authors be held liable for any damages
@@ -33,13 +33,16 @@
     LTPopup *mPopupWindow;
     NSString *mAppName;
 
+    IBOutlet NSMenuItem *mOperationsMenu;
     IBOutlet NSMenuItem *mSynthMenu;
     IBOutlet NSMenu *mSynthSelectMenu;
     IBOutlet NSMenuItem *mMFXMenu;
     IBOutlet NSMenu *mMFXSelectMenu;
+    IBOutlet NSMenuItem *mDebugMenu;
     
     // For version check
     LTVersionCheck *mVersionCheck;
+    NSString *mAppVersion;
     
     // For logging
     os_log_t mLog;
@@ -50,5 +53,7 @@
 - (IBAction)showSettingsWindow:(id)sender;
 - (IBAction)synthSelect:(id)sender;
 - (IBAction)showABoutBox:(id)sender;
+- (IBAction)checkForUpdates:(id)sender;
+- (IBAction)showDebugInfo:(id)sender;
 
 @end
